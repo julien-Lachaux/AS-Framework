@@ -9,12 +9,12 @@
 //=========================================
 
 // Value (color, variables, shadows...)
-@import "global/colors.scss";
+
+@import "global/reset.scss";
 @import "global/variables.scss";
+@import "global/grid.scss";
+@import "global/colors.scss";
 @import "global/shadows.scss";
-
-
-// Grid
 
 // Font
 
