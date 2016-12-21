@@ -4,52 +4,106 @@
 //
 //=========================================
 //
-// 1 - abstract class
-// 2 - phone
-// 3 - tablet
-// 4 - computer
-// 5 - row
-// 6 - container
+// 1 - Mixins
+// 2 - Extends
+// 3 - Grid --defautl--
+// 4 - Grid --phone--
+// 5 - Grid --tablet--
+// 6 - Grid --computer--
+// 7 - row
 // 
 //=========================================
 
-$grid-12: 100% / 12;
-$grid-margin: 0% 0% 0 1%;
+// Variables a ajouter au fichier variables.scss
+
+$paddingLeft: 10px;
+$grid: 12;
+$phoneScreen: 740px;
+$tabletScreen: 960px;
+$computerScreen: 1180px;
 
 //=========================================
-// Abstract class
+// Mixins
 //=========================================
 
-
-
-//=========================================
-// Grid for phone screen size
-//=========================================
-
-// Grid
-
-// Offset
-
-//=========================================
-// Grid for tablet screen size
-//=========================================
-
-// Grid
-
-// Offset
+@mixin responsiveGrid($name: ''){
+	@for $i from 1 through $grid{
+		.col-#{$name}-#{$i}{
+			width: $i / $grid * 100%;
+		}
+	.col-#{$name}-center{ margin: 0 auto; float: none; }
+.col-#{$name}-offset-#{$i}{ left: $i / $grid * 100%; }
+	.hidden-on-#{$name}{ display: none; visibility: hidden; }
+	}
+}
 
 //=========================================
-// Grid for computer screen size
+// Extends
 //=========================================
 
-// Grid
+%gridSpec{
+	float: left;
+	position: relative;
+	padding: 0 $paddingLeft;
+}
 
-// Offset
+%clearfix{
+	
+	&:before,
+	&:after {
+		content: "";
+		display: table;
+	}
+	.container:after {
+		clear: both;
+	}
+	.container {
+		zoom: 1;
+	}
+}
+
+//=========================================
+// Grid --default--
+//=========================================
+
+@for $i from 1 through $grid{
+	.col-#{$i}{
+		width: $i / $grid * 100%;		
+	}
+	.col-ph#{$i}, .col-tb#{$i}, .col-cp#{$i} {
+		@extend %gridSpec;
+	}
+}
+
+//=========================================
+// Grid --for phone screen size--
+//=========================================
+
+@media only screen and (min-width: $phoneScreen) {
+	@include responsiveGrid('ph')
+}
+
+//=========================================
+// Grid --for tablet screen size--
+//=========================================
+
+@media only screen and (min-width: $tabletScreen) {
+	@include responsiveGrid('tb')
+}
+
+//=========================================
+// Grid --for computer screen size--
+//=========================================
+
+@media only screen and (min-width: $computerScreen) {
+	@include responsiveGrid('cp')
+}
 
 //=========================================
 // Row
 //=========================================
 
-//=========================================
-// Container
-//=========================================
+.row {
+	margin: 0 $paddingLeft;
+	@extend %clearfix;
+}
