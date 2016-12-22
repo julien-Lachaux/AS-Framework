@@ -14,13 +14,26 @@
 // 
 //=========================================
 
-// Variables a ajouter au fichier variables.scss
+//=========================================
+// Variables to add into variables.scss
+//=========================================
+
+// define specs of the grid
 
 $paddingLeft: 10px;
 $grid: 12;
+
+// define the min-width in media queries
+
 $phoneScreen: 740px;
 $tabletScreen: 960px;
 $computerScreen: 1180px;
+
+// define the string will be use in class in the html doc for device | EX: col-ph-6 for phone device
+
+$phone: 'ph';
+$tablet: 'tb';
+$computer: 'cp';
 
 //=========================================
 // Mixins
@@ -31,9 +44,7 @@ $computerScreen: 1180px;
 		.col-#{$name}-#{$i}{
 			width: $i / $grid * 100%;
 		}
-	.col-#{$name}-center{ margin: 0 auto; float: none; }
-.col-#{$name}-offset-#{$i}{ left: $i / $grid * 100%; }
-	.hidden-on-#{$name}{ display: none; visibility: hidden; }
+		.col-#{$name}-offset-#{$i}{ left: $i / $grid * 100%; }
 	}
 }
 
@@ -67,10 +78,11 @@ $computerScreen: 1180px;
 //=========================================
 
 @for $i from 1 through $grid{
+	
 	.col-#{$i}{
-		width: $i / $grid * 100%;		
+		width: $i / $grid * 100%;
 	}
-	.col-ph#{$i}, .col-tb#{$i}, .col-cp#{$i} {
+	.col-#{$phone}#{$i}, .col-#{$tablet}#{$i}, .col-#{$computer}#{$i} {
 		@extend %gridSpec;
 	}
 }
@@ -80,7 +92,10 @@ $computerScreen: 1180px;
 //=========================================
 
 @media only screen and (min-width: $phoneScreen) {
-	@include responsiveGrid('ph')
+	width: 100%;
+	@include responsiveGrid($phone)
+	.center-#{$phone}{ margin: 0 auto; float: none; }
+	.hidden-on-#{$phone}{ display: none; visibility: hidden; }
 }
 
 //=========================================
@@ -88,7 +103,9 @@ $computerScreen: 1180px;
 //=========================================
 
 @media only screen and (min-width: $tabletScreen) {
-	@include responsiveGrid('tb')
+	@include responsiveGrid($tablet)
+	.center-#{$tablet}{ margin: 0 auto; float: none; }
+	.hidden-on-#{$tablet}{ display: none; visibility: hidden; }
 }
 
 //=========================================
@@ -96,7 +113,9 @@ $computerScreen: 1180px;
 //=========================================
 
 @media only screen and (min-width: $computerScreen) {
-	@include responsiveGrid('cp')
+	@include responsiveGrid($computer)
+	.center-#{$computer}{ margin: 0 auto; float: none; }
+	.hidden-on-#{$computer}{ display: none; visibility: hidden; }
 }
 
 //=========================================
