@@ -1,0 +1,161 @@
+//=========================================
+//
+// WEB COMPONENT : Side Nav & Flux
+//
+//=========================================
+//
+// For use the side nav u have to put all
+// of your section (ex: header or footer)
+// in the "flux" component
+//
+//=========================================
+//
+// I  - flux
+// II - sideNav
+// 		1 - nav-header
+// 		2 - user-spec
+// 		3 - separator
+// 		4 - nav-section
+// 		5 - nav-title
+// 		6 - footer
+// 		7 - 
+// 		8 - 
+// 
+//=========================================
+
+//=========================================
+// variables to put into variables.scss
+//=========================================
+// general
+$circleRadius : 50%;
+
+// flux and sideNav
+$sideNavWidth: 300px;
+
+// sideNav
+$sideNavHeight: 100% + 60px;
+$sideNavColor: grey;
+$sideNavBgColor: white;
+
+// nav-header
+$navHeaderHeight: 300px;
+
+// user-spec
+
+//=========================================
+// @EXTENDS
+//=========================================
+
+.%navSpec {
+	position: relative;
+}
+
+//=========================================
+//
+// Flux
+//
+//=========================================
+
+.flux {
+	display: inline-block;
+	width: 100% - $sideNavWidth;
+	margin-left: $sideNavWidth;
+}
+
+//=========================================
+// 
+// SlideNav
+// 
+//=========================================
+
+.sideNav {
+	// extends
+	@extend .shadow-1;
+	
+	// size
+	width: $sideNavWidth;
+	height: $sideNavHeight;
+	margin: 0px;
+	
+	// position
+	position: fixed;
+	display: inline-block;
+	z-index: 1;
+	
+	// style
+	color: $sideNavColor;
+	background-color: $sideNavBgColor;
+}
+
+//=========================================
+// nav-header
+//=========================================
+
+.nav-header {
+	@extend .%navSpec;
+	height: $navHeaderHeight;
+	width: 100%;
+}
+
+//=========================================
+// user-spec
+//=========================================
+
+.user-spec {
+	@extend .%navSpec;
+	height: 100% - $navHeaderHeight;
+	
+	.user-img {
+		border-radius: $circleRadius;
+		display: inline-block;
+		width: 180px;
+		height: 180px;
+	}
+	
+	.user-info {
+		display: inline-block;
+		color: grey;
+		font-size: 15px;
+	}
+}
+
+
+//=========================================
+// nav-wrap
+//=========================================
+
+.nav-wrap {
+	@extend .%navSpec;
+	padding: 15px 50px 50px 15px;
+	margin: 0 auto;
+	color: grey;
+	
+	.nav-section {
+		padding: 5px;
+		margin: 5px;
+	}
+	.nav-title {
+		text-align: center;
+		margin: 0 auto;
+		color: darkgreen;
+		border-bottom: 1px solid green;
+		border-top: 1px solid green;
+	}
+}
+
+//=========================================
+// footer
+//=========================================
+
+.footer {
+	// a definir ultérieurement
+}
+
+//=========================================
+// social-wrap
+//=========================================
+
+.social-wrap{
+	// a deféinir utlérieurement
+}
+

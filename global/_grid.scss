@@ -39,13 +39,16 @@ $computer: 'cp';
 // Mixins
 //=========================================
 
-@mixin responsiveGrid($name: ''){
+@mixin responsiveGrid($name){
 	@for $i from 1 through $grid{
 		.col-#{$name}-#{$i}{
 			width: $i / $grid * 100%;
 		}
-		.col-#{$name}-offset-#{$i}{ left: $i / $grid * 100%; }
+		.offset-#{$i}{ margin-left: $i / $grid * 100%; }
+		.offset-#{$name}-#{$i}{ margin-left: $i / $grid * 100%; }
 	}
+	.center-#{$name}{ margin: 0 auto; float: none; }
+	.hidden-on-#{$name}{ display: none; visibility: hidden; }
 }
 
 //=========================================
@@ -92,10 +95,7 @@ $computer: 'cp';
 //=========================================
 
 @media only screen and (min-width: $phoneScreen) {
-	width: 100%;
 	@include responsiveGrid($phone)
-	.center-#{$phone}{ margin: 0 auto; float: none; }
-	.hidden-on-#{$phone}{ display: none; visibility: hidden; }
 }
 
 //=========================================
@@ -104,8 +104,6 @@ $computer: 'cp';
 
 @media only screen and (min-width: $tabletScreen) {
 	@include responsiveGrid($tablet)
-	.center-#{$tablet}{ margin: 0 auto; float: none; }
-	.hidden-on-#{$tablet}{ display: none; visibility: hidden; }
 }
 
 //=========================================
@@ -114,8 +112,6 @@ $computer: 'cp';
 
 @media only screen and (min-width: $computerScreen) {
 	@include responsiveGrid($computer)
-	.center-#{$computer}{ margin: 0 auto; float: none; }
-	.hidden-on-#{$computer}{ display: none; visibility: hidden; }
 }
 
 //=========================================
